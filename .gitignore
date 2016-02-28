@@ -1,0 +1,13 @@
+Thumbs.db
+.DS_Store
+
+/index.php
+/config.php
+/libs/cores/
+/libs/plugins/cookie.php
+/libs/plugins/directory.php
+/libs/plugins/file.php
+/libs/plugins/hash.php
+/libs/plugins/mail.php
+/libs/plugins/string.php
+/libs/plugins/ui.php
