@@ -3,6 +3,8 @@ Thumbs.db
 
 /index.php
 /config.php
+/database/
+/files/articles/
 /libs/cores/
 /libs/plugins/cookie.php
 /libs/plugins/directory.php
