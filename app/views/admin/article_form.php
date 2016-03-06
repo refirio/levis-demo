@@ -36,7 +36,23 @@
                 <input type="hidden" name="preview" value="no" />
                 <dl>
                     <dt>日時</dt>
-                        <dd><input type="text" name="datetime" size="30" value="<?php t($view['article']['datetime']) ?>" /></dd>
+                        <dd>
+                            <select name="datetime[year]">
+                                <?php e(ui_datetime($view['article']['datetime'], 'year', '', '年', localdate('Y') - 5, localdate('Y') + 5)) ?>
+                            </select>
+                            <select name="datetime[month]">
+                                <?php e(ui_datetime($view['article']['datetime'], 'month', '', '月')) ?>
+                            </select>
+                            <select name="datetime[day]">
+                                <?php e(ui_datetime($view['article']['datetime'], 'day', '', '日')) ?>
+                            </select>
+                            <select name="datetime[hour]">
+                                <?php e(ui_datetime($view['article']['datetime'], 'hour', '', '時')) ?>
+                            </select>
+                            <select name="datetime[minute]">
+                                <?php e(ui_datetime($view['article']['datetime'], 'minute', '', '分', 0, 59, 5)) ?>
+                            </select>
+                        </dd>
                     <dt>タイトル</dt>
                         <dd><input type="text" name="title" size="30" value="<?php t($view['article']['title']) ?>" /></dd>
                     <dt>本文</dt>

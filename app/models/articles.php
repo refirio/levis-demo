@@ -207,6 +207,17 @@ function normalize_articles($queries, $options = array())
 {
     //日時
     if (isset($queries['datetime'])) {
+        if (is_array($queries['datetime'])) {
+            $queries['datetime'] = $queries['datetime']['year']
+                                   . '-' .
+                                   $queries['datetime']['month']
+                                   . '-' .
+                                   $queries['datetime']['day']
+                                   . ' ' .
+                                   $queries['datetime']['hour']
+                                   . ':' .
+                                   $queries['datetime']['minute'];
+        }
         $queries['datetime'] = mb_convert_kana($queries['datetime'], 'a', MAIN_INTERNAL_ENCODING) . ':00';
     }
 
@@ -368,7 +379,7 @@ function form_articles($data)
     //日時
     if (isset($data['datetime'])) {
         if (preg_match('/^(\d\d\d\d\-\d\d\-\d\d \d\d:\d\d):\d\d$/', $data['datetime'], $matches)) {
-            $data['datetime'] = $matches[1];
+            $data['datetime'] = $matches[1] . ':00';
         }
     }
 
@@ -387,7 +398,7 @@ function default_articles()
         'created'  => localdate('Y-m-d H:i:s'),
         'modified' => localdate('Y-m-d H:i:s'),
         'deleted'  => null,
-        'datetime' => localdate('Y-m-d H:i:s'),
+        'datetime' => localdate('Y-m-d H:00:00'),
         'title'    => '',
         'body'     => null,
         'image_01' => null,
