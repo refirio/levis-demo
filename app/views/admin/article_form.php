@@ -28,7 +28,7 @@
         </ul>
         <?php endif ?>
 
-        <form action="<?php t(MAIN_FILE) ?>/admin/article_form<?php $view['article']['id'] ? t('?id=' . $view['article']['id']) : '' ?>" method="post">
+        <form action="<?php t(MAIN_FILE) ?>/admin/article_form<?php $view['article']['id'] ? t('?id=' . $view['article']['id']) : '' ?>" method="post" class="register">
             <fieldset>
                 <legend>登録フォーム</legend>
                 <input type="hidden" name="token" value="<?php t($view['token']) ?>" />
