@@ -70,10 +70,10 @@ function insert_articles($queries, $options = array())
         return $resource;
     }
 
-    if (!empty($options['files'])) {
-        //IDを取得
-        $id = db_last_insert_id();
+    //IDを取得
+    $id = db_last_insert_id();
 
+    if (!empty($options['files'])) {
         //関連するファイルを削除
         remove_articles($id, $options['files']);
 
@@ -118,10 +118,10 @@ function update_articles($queries, $options = array())
         return $resource;
     }
 
-    if (!empty($options['files'])) {
-        //IDを取得
-        $id = $options['id'];
+    //IDを取得
+    $id = $options['id'];
 
+    if (!empty($options['files'])) {
         //関連するファイルを削除
         remove_articles($id, $options['files']);
 
@@ -163,10 +163,9 @@ function delete_articles($queries, $options = array())
     if ($options['softdelete'] == true) {
         //データを編集
         $resource = db_update(array(
-            'update' => DATABASE_PREFIX . 'articles',
+            'update' => DATABASE_PREFIX . 'articles AS articles',
             'set'    => array(
                 'deleted' => localdate('Y-m-d H:i:s'),
-                'code'    => array('CONCAT(\'DELETED ' . localdate('YmdHis') . ' \', code)'),
             ),
             'where'  => isset($queries['where']) ? $queries['where'] : '',
             'limit'  => isset($queries['limit']) ? $queries['limit'] : '',
@@ -177,7 +176,7 @@ function delete_articles($queries, $options = array())
     } else {
         //データを削除
         $resource = db_delete(array(
-            'delete_from' => DATABASE_PREFIX . 'articles',
+            'delete_from' => DATABASE_PREFIX . 'articles AS articles',
             'where'       => isset($queries['where']) ? $queries['where'] : '',
             'limit'       => isset($queries['limit']) ? $queries['limit'] : '',
         ));
