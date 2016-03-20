@@ -26,23 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         //入力データを検証＆登録
         $warnings = validate_articles($post['article']);
-        if (isset($_POST['type']) && $_POST['type'] == 'json') {
-            if (empty($warnings)) {
-                ok();
-            } else {
-                warning($warnings);
-            }
+        if (empty($warnings)) {
+            $_SESSION['post']['article'] = $post['article'];
+
+            //リダイレクト
+            redirect('/admin/article_post?token=' . token('create'));
         } else {
-            if (empty($warnings)) {
-                $_SESSION['post']['article'] = $post['article'];
+            $view['article'] = $post['article'];
 
-                //リダイレクト
-                redirect('/admin/article_post?token=' . token('create'));
-            } else {
-                $view['article'] = $post['article'];
-
-                $view['warnings'] = $warnings;
-            }
+            $view['warnings'] = $warnings;
         }
     }
 } else {
