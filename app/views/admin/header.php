@@ -23,6 +23,6 @@
         </ul>
         <h2>管理者用</h2>
         <ul>
-            <li><a href="<?php t(MAIN_FILE) ?>/admin/menu">メニュー</a></li>
+            <li><a href="<?php t(MAIN_FILE) ?>/admin/home">メニュー</a></li>
             <li><a href="<?php t(MAIN_FILE) ?>/admin/logout">ログアウト</a></li>
         </ul>
