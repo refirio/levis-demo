@@ -79,8 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 if (empty($_POST['preview']) || $_POST['preview'] == 'no') {
-    //記事のフォーム用データ作成
-    $view['article'] = form_articles($view['article']);
+    //記事の表示用データ作成
+    $view['article'] = view_articles($view['article']);
 }
 
 //タイトル

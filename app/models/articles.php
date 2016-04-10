@@ -368,12 +368,12 @@ function remove_articles($id, $files)
 }
 
 /**
- * 記事のフォーム用データ作成
+ * 記事の表示用データ作成
  *
  * @param  array  $data
  * @return array
  */
-function form_articles($data)
+function view_articles($data)
 {
     //日時
     if (isset($data['datetime'])) {
