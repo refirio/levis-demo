@@ -34,7 +34,7 @@ $GLOBALS['options'] = array(
         'publics' => array(
             0 => '非公開',
             1 => '公開',
-        )
+        ),
     ),
 );
 
