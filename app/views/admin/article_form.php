@@ -38,19 +38,19 @@
                     <dt>日時</dt>
                         <dd>
                             <select name="datetime[year]">
-                                <?php e(ui_datetime($view['article']['datetime'], 'year', '', '年', localdate('Y') - 5, localdate('Y') + 5)) ?>
+                                <?php e(ui_datetime($view['article']['datetime'], 'year', array('suffix' => '年', 'from' => localdate('Y') - 5, 'to' => localdate('Y') + 5))) ?>
                             </select>
                             <select name="datetime[month]">
-                                <?php e(ui_datetime($view['article']['datetime'], 'month', '', '月')) ?>
+                                <?php e(ui_datetime($view['article']['datetime'], 'month', array('suffix' => '月'))) ?>
                             </select>
                             <select name="datetime[day]">
-                                <?php e(ui_datetime($view['article']['datetime'], 'day', '', '日')) ?>
+                                <?php e(ui_datetime($view['article']['datetime'], 'day', array('suffix' => '日'))) ?>
                             </select>
                             <select name="datetime[hour]">
-                                <?php e(ui_datetime($view['article']['datetime'], 'hour', '', '時')) ?>
+                                <?php e(ui_datetime($view['article']['datetime'], 'hour', array('suffix' => '時'))) ?>
                             </select>
                             <select name="datetime[minute]">
-                                <?php e(ui_datetime($view['article']['datetime'], 'minute', '', '分', 0, 59, 5)) ?>
+                                <?php e(ui_datetime($view['article']['datetime'], 'minute', array('suffix' => '分', 'from' => 0, 'to' => 59, 'step' => 5))) ?>
                             </select>
                         </dd>
                     <dt>タイトル</dt>
