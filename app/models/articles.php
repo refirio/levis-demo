@@ -160,7 +160,7 @@ function delete_articles($queries, $options = array())
         $deletes[] = intval($article['id']);
     }
 
-    if ($options['softdelete'] == true) {
+    if ($options['softdelete'] === true) {
         //データを編集
         $resource = db_update(array(
             'update' => DATABASE_PREFIX . 'articles AS articles',
@@ -185,7 +185,7 @@ function delete_articles($queries, $options = array())
         }
     }
 
-    if ($options['file'] == true) {
+    if ($options['file'] === true) {
         //関連するファイルを削除
         foreach ($deletes as $delete) {
             directory_rmdir($GLOBALS['file_targets']['article'] . $delete . '/');

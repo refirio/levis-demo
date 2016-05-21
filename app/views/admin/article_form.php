@@ -1,6 +1,6 @@
 <?php import('app/views/admin/header.php') ?>
 
-    <?php if (isset($_POST['preview']) && $_POST['preview'] == 'yes') : ?>
+    <?php if (isset($_POST['preview']) && $_POST['preview'] === 'yes') : ?>
         <h3>確認</h3>
         <dl>
             <dt>日時</dt>
@@ -81,7 +81,7 @@
                         <dd>
                             <select name="public">
                                 <?php foreach ($GLOBALS['options']['article']['publics'] as $key => $value) : ?>
-                                <option value="<?php t($key) ?>"<?php $key == $view['article']['public'] ? e(' selected="selected"') : '' ?>><?php t($value) ?></option>
+                                <option value="<?php t($key) ?>"<?php $key === $view['article']['public'] ? e(' selected="selected"') : '' ?>><?php t($value) ?></option>
                                 <?php endforeach ?>
                             </select>
                         </dd>

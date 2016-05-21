@@ -1,6 +1,6 @@
 <?php
 
-if (DATABASE_TYPE == 'pdo_mysql' || DATABASE_TYPE == 'mysql') {
+if (DATABASE_TYPE === 'pdo_mysql' || DATABASE_TYPE === 'mysql') {
     //MySQL用のテーブルを作成
     db_query('
         CREATE TABLE IF NOT EXISTS ' . DATABASE_PREFIX . 'articles(
@@ -17,7 +17,7 @@ if (DATABASE_TYPE == 'pdo_mysql' || DATABASE_TYPE == 'mysql') {
             PRIMARY KEY(id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT \'記事\';
     ');
-} elseif (DATABASE_TYPE == 'pdo_pgsql' || DATABASE_TYPE == 'pgsql') {
+} elseif (DATABASE_TYPE === 'pdo_pgsql' || DATABASE_TYPE === 'pgsql') {
     //PostgreSQL用のテーブルを作成
     db_query('
         CREATE TABLE IF NOT EXISTS ' . DATABASE_PREFIX . 'articles(

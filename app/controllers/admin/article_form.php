@@ -3,7 +3,7 @@
 import('libs/plugins/file.php');
 import('libs/plugins/ui.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //ワンタイムトークン
     if (!token('check')) {
         error('不正なアクセスです。');
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ))
     );
 
-    if (isset($_POST['preview']) && $_POST['preview'] == 'yes') {
+    if (isset($_POST['preview']) && $_POST['preview'] === 'yes') {
         //プレビュー
         $view['article'] = $post['article'];
     } else {
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    if (isset($_GET['type']) && $_GET['type'] == 'json') {
+    if (isset($_GET['type']) && $_GET['type'] === 'json') {
         //記事情報を取得
         header('Content-Type: application/json; charset=' . MAIN_CHARSET);
 
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-if (empty($_POST['preview']) || $_POST['preview'] == 'no') {
+if (empty($_POST['preview']) || $_POST['preview'] === 'no') {
     //記事の表示用データ作成
     $view['article'] = view_articles($view['article']);
 }
