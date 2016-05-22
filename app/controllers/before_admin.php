@@ -8,5 +8,4 @@ if (!preg_match('/^(index|logout)$/', $_REQUEST['work'])) {
     } else {
         $_SESSION['administrator']['time'] = localdate();
     }
-    echo $_REQUEST['work'];
 }
