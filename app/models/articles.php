@@ -188,7 +188,7 @@ function delete_articles($queries, $options = array())
     if ($options['file'] === true) {
         //関連するファイルを削除
         foreach ($deletes as $delete) {
-            directory_rmdir($GLOBALS['file_targets']['article'] . $delete . '/');
+            directory_rmdir($GLOBALS['config']['file_targets']['article'] . $delete . '/');
         }
     }
 
@@ -281,7 +281,7 @@ function save_articles($id, $files)
     foreach (array_keys($files) as $file) {
         if (empty($files[$file]['delete']) && !empty($files[$file]['name'])) {
             if (preg_match('/\.(.*)$/', $files[$file]['name'], $matches)) {
-                $directory = $GLOBALS['file_targets']['article'] . intval($id) . '/';
+                $directory = $GLOBALS['config']['file_targets']['article'] . intval($id) . '/';
                 $filename  = $file . '.' . $matches[1];
 
                 directory_mkdir($directory);
@@ -305,7 +305,7 @@ function save_articles($id, $files)
                         error('データを編集できません。');
                     }
 
-                    file_resize($directory . $filename, $directory . 'thumbnail_' . $filename, $GLOBALS['resize_width'], $GLOBALS['resize_height'], $GLOBALS['resize_quality']);
+                    file_resize($directory . $filename, $directory . 'thumbnail_' . $filename, $GLOBALS['config']['resize_width'], $GLOBALS['config']['resize_height'], $GLOBALS['config']['resize_quality']);
                 }
             } else {
                 error('ファイル ' . $files[$file]['name'] . ' の拡張子を取得できません。');
@@ -341,11 +341,11 @@ function remove_articles($id, $files)
                 $article = $articles[0];
             }
 
-            if (is_file($GLOBALS['file_targets']['article'] . intval($id) . '/' . $article[$file])) {
-                if (is_file($GLOBALS['file_targets']['article'] . intval($id) . '/thumbnail_' . $article[$file])) {
-                    unlink($GLOBALS['file_targets']['article'] . intval($id) . '/thumbnail_' . $article[$file]);
+            if (is_file($GLOBALS['config']['file_targets']['article'] . intval($id) . '/' . $article[$file])) {
+                if (is_file($GLOBALS['config']['file_targets']['article'] . intval($id) . '/thumbnail_' . $article[$file])) {
+                    unlink($GLOBALS['config']['file_targets']['article'] . intval($id) . '/thumbnail_' . $article[$file]);
                 }
-                unlink($GLOBALS['file_targets']['article'] . intval($id) . '/' . $article[$file]);
+                unlink($GLOBALS['config']['file_targets']['article'] . intval($id) . '/' . $article[$file]);
 
                 $resource = db_update(array(
                     'update' => DATABASE_PREFIX . 'articles',

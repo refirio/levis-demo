@@ -15,8 +15,8 @@ $view['articles'] = select_articles(array(
     'limit'    => array(
         ':offset, :limit',
         array(
-            'offset' => $GLOBALS['limits']['article'] * ($_GET['page'] - 1),
-            'limit'  => $GLOBALS['limits']['article'],
+            'offset' => $GLOBALS['config']['limits']['article'] * ($_GET['page'] - 1),
+            'limit'  => $GLOBALS['config']['limits']['article'],
         ),
     ),
 ));
@@ -25,14 +25,14 @@ $view['article_count'] = select_articles(array(
     'select' => 'COUNT(*) AS count',
 ));
 $view['article_count'] = $view['article_count'][0]['count'];
-$view['article_page']  = ceil($view['article_count'] / $GLOBALS['limits']['article']);
+$view['article_page']  = ceil($view['article_count'] / $GLOBALS['config']['limits']['article']);
 
 //ページャー
 $pager = ui_pager(array(
     'key'   => 'page',
     'count' => $view['article_count'],
-    'size'  => $GLOBALS['limits']['article'],
-    'width' => $GLOBALS['pagers']['article'],
+    'size'  => $GLOBALS['config']['limits']['article'],
+    'width' => $GLOBALS['config']['pagers']['article'],
     'query' => '?',
 ));
 $view['article_pager'] = $pager['first'] . ' ' . $pager['back'] . ' ' . implode(' | ', $pager['pages']) . ' ' . $pager['next'] . ' ' . $pager['last'];

@@ -7,10 +7,10 @@
 *******************************************************************************/
 
 /* 設置ディレクトリ */
-$GLOBALS['http_path'] = dirname($_SERVER['SCRIPT_NAME']) . '/';
+$GLOBALS['config']['http_path'] = dirname($_SERVER['SCRIPT_NAME']) . '/';
 
 /* ログイン情報 */
-$GLOBALS['administrators'] = array(
+$GLOBALS['config']['administrators'] = array(
     'admin' => array(
         'password' => '1234',
         'address'  => array(),
@@ -18,17 +18,17 @@ $GLOBALS['administrators'] = array(
 );
 
 /* 表示件数 */
-$GLOBALS['limits'] = array(
+$GLOBALS['config']['limits'] = array(
     'article' => 10,
 );
 
 /* ページャーの幅 */
-$GLOBALS['pagers'] = array(
+$GLOBALS['config']['pagers'] = array(
     'article' => 5,
 );
 
 /* オプション項目 */
-$GLOBALS['options'] = array(
+$GLOBALS['config']['options'] = array(
     'article' => array(
         //公開
         'publics' => array(
@@ -39,12 +39,12 @@ $GLOBALS['options'] = array(
 );
 
 /* ファイルアップロード先 */
-$GLOBALS['file_targets'] = array(
+$GLOBALS['config']['file_targets'] = array(
     'article' => 'files/articles/',
 );
 
 /* ファイルアップロード許可 */
-$GLOBALS['file_permissions'] = array(
+$GLOBALS['config']['file_permissions'] = array(
     'file'  => array(
     ),
     'image' => array(
@@ -70,26 +70,26 @@ $GLOBALS['file_permissions'] = array(
 );
 
 /* 代替ファイル */
-$GLOBALS['file_alternatives'] = array(
+$GLOBALS['config']['file_alternatives'] = array(
     'file'  => 'images/file.png',
     'image' => null,
 );
 
 /* ダミー画像ファイル */
-$GLOBALS['file_dummies'] = array(
+$GLOBALS['config']['file_dummies'] = array(
     'file'  => 'images/no_file.png',
     'image' => 'images/no_file.png',
 );
 
 /* 画像リサイズ時のサイズ */
-$GLOBALS['resize_width']  = 100;
-$GLOBALS['resize_height'] = 80;
+$GLOBALS['config']['resize_width']  = 100;
+$GLOBALS['config']['resize_height'] = 80;
 
 /* 画像リサイズ時のJpeg画質 */
-$GLOBALS['resize_quality'] = 85;
+$GLOBALS['config']['resize_quality'] = 85;
 
 /* ログインの有効期限 */
-$GLOBALS['login_expire'] = 60 * 60;
+$GLOBALS['config']['login_expire'] = 60 * 60;
 
 /* Cookieの有効期限 */
-$GLOBALS['cookie_expire'] = 60 * 60;
+$GLOBALS['config']['cookie_expire'] = 60 * 60;

@@ -14,7 +14,7 @@
             <dt>画像2</dt>
                 <dd><img src="<?php t(MAIN_FILE) ?>/admin/file?target=article&amp;key=image_02&amp;format=image<?php $view['article']['id'] ? t('&id=' . $view['article']['id']) : '' ?>" /></dd>
             <dt>公開</dt>
-                <dd><?php h($GLOBALS['options']['article']['publics'][$view['article']['public']]) ?></dd>
+                <dd><?php h($GLOBALS['config']['options']['article']['publics'][$view['article']['public']]) ?></dd>
         </dl>
         <p><a href="#" class="close">閉じる</a></p>
     <?php else : ?>
@@ -80,7 +80,7 @@
                     <dt>公開</dt>
                         <dd>
                             <select name="public">
-                                <?php foreach ($GLOBALS['options']['article']['publics'] as $key => $value) : ?>
+                                <?php foreach ($GLOBALS['config']['options']['article']['publics'] as $key => $value) : ?>
                                 <option value="<?php t($key) ?>"<?php $key == $view['article']['public'] ? e(' selected="selected"') : '' ?>><?php t($value) ?></option>
                                 <?php endforeach ?>
                             </select>

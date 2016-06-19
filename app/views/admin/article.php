@@ -37,7 +37,7 @@
                 <tr>
                     <td><?php h(localdate('Y/m/d H:i', $article['datetime'])) ?></td>
                     <td><?php h($article['title']) ?></td>
-                    <td><?php h($GLOBALS['options']['article']['publics'][$article['public']]) ?></td>
+                    <td><?php h($GLOBALS['config']['options']['article']['publics'][$article['public']]) ?></td>
                     <td><a href="<?php t(MAIN_FILE) ?>/admin/article_form?id=<?php t($article['id']) ?>">編集</a></td>
                 </tr>
                 <?php endforeach ?>
