@@ -1,6 +1,6 @@
 <?php import('app/views/admin/header.php') ?>
 
-    <?php if (isset($_POST['preview']) && $_POST['preview'] === 'yes') : ?>
+    <?php if (isset($_POST['view']) && $_POST['view'] === 'preview') : ?>
         <h3>確認</h3>
         <dl>
             <dt>日時</dt>
@@ -33,7 +33,7 @@
                 <legend>登録フォーム</legend>
                 <input type="hidden" name="token" value="<?php t($view['token']) ?>" />
                 <input type="hidden" name="id" value="<?php t($view['article']['id']) ?>" />
-                <input type="hidden" name="preview" value="no" />
+                <input type="hidden" name="view" value="" />
                 <dl>
                     <dt>日時</dt>
                         <dd>

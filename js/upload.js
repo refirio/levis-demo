@@ -27,7 +27,7 @@ $(document).ready(function() {
             progress: function(total, loaded, percent) {
                 $('#upload > p').html('アップロード中：進捗' + percent + '%' + (total ? '（' + Math.round(total / 1024) + 'KB 中 ' + Math.round(loaded / 1024) + 'KB）' : ''));
             },
-            success: function() {
+            success: function(response) {
                 $('#upload > p').html('アップロードしました。');
 
                 var file = $('#upload form input[name="key"]').val();
@@ -36,8 +36,8 @@ $(document).ready(function() {
                 window.parent.$('#' + file + '_menu').show();
                 window.parent.$.fn.subwindow.close();
             },
-            error: function(message) {
-                $('#upload > p').html('アップロード失敗：' + message);
+            error: function(response) {
+                $('#upload > p').html('アップロード失敗：' + response.message);
             },
         });
     }

@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ))
     );
 
-    if (isset($_POST['preview']) && $_POST['preview'] === 'yes') {
+    if (isset($_POST['view']) && $_POST['view'] === 'preview') {
         //プレビュー
         $view['article'] = $post['article'];
     } else {
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-if (empty($_POST['preview']) || $_POST['preview'] === 'no') {
+if ((empty($_POST['view']) || $_POST['view'] !== 'preview')) {
     //記事の表示用データ作成
     $view['article'] = view_articles($view['article']);
 }

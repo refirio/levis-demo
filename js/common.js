@@ -5,11 +5,11 @@ $(document).ready(function() {
      */
     $('.preview').on('click', function() {
         $(this).closest('form').attr('target', '_blank');
-        $(this).closest('form').find('input[name=preview]').val('yes');
+        $(this).closest('form').find('input[name=view]').val('preview');
 
         $(this).closest('form').submit();
 
-        $(this).closest('form').find('input[name=preview]').val('no');
+        $(this).closest('form').find('input[name=view]').val('');
         $(this).closest('form').attr('target', '');
 
         return false;
