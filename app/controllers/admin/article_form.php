@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($warnings)) {
             $_SESSION['post']['article'] = $post['article'];
 
-            //リダイレクト
-            redirect('/admin/article_post?token=' . token('create'));
+            //フォワード
+            forward('/admin/article_post');
         } else {
             $view['article'] = $post['article'];
 

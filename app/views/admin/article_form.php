@@ -63,7 +63,7 @@
                             <div class="file_menu" id="image_01_menu">
                                 <ul>
                                     <li><a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_01&amp;format=image<?php $view['article']['id'] ? t('&id=' . $view['article']['id']) : '' ?>" title="アップロード" class="file_upload">差替</a></li>
-                                    <li><a href="<?php t(MAIN_FILE) ?>/admin/file_delete?target=article&amp;key=image_01&amp;format=image<?php $view['article']['id'] ? t('&id=' . $view['article']['id']) : '' ?>&amp;token=<?php t($view['token']) ?>" id="image_01_delete">削除</a></li>
+                                    <li><a href="<?php t(MAIN_FILE) ?>/admin/file_delete?target=article&amp;key=image_01&amp;format=image<?php $view['article']['id'] ? t('&id=' . $view['article']['id']) : '' ?>" id="image_01_delete" data-token="<?php t($view['token']) ?>">削除</a></li>
                                 </ul>
                             </div>
                         </dd>
@@ -73,7 +73,7 @@
                             <div class="file_menu" id="image_02_menu">
                                 <ul>
                                     <li><a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_02&amp;format=image<?php $view['article']['id'] ? t('&id=' . $view['article']['id']) : '' ?>" title="アップロード" class="file_upload">差替</a></li>
-                                    <li><a href="<?php t(MAIN_FILE) ?>/admin/file_delete?target=article&amp;key=image_02&amp;format=image<?php $view['article']['id'] ? t('&id=' . $view['article']['id']) : '' ?>&amp;token=<?php t($view['token']) ?>" id="image_02_delete">削除</a></li>
+                                    <li><a href="<?php t(MAIN_FILE) ?>/admin/file_delete?target=article&amp;key=image_02&amp;format=image<?php $view['article']['id'] ? t('&id=' . $view['article']['id']) : '' ?>" id="image_02_delete" data-token="<?php t($view['token']) ?>">削除</a></li>
                                 </ul>
                             </div>
                         </dd>

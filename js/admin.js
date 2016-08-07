@@ -9,16 +9,18 @@ $(document).ready(function() {
             return function(e) {
                 if (window.confirm('本当に削除してもよろしいですか？')) {
                     $.ajax({
-                        type: 'get',
+                        type: 'post',
                         url: $(this).attr('href'),
                         cache: false,
-                        data: 'type=json',
+                        data: 'type=json&token=' + $(this).attr('data-token'),
                         dataType: 'json',
                         success: function(response) {
                             if (response.status == 'OK') {
+                                //正常終了
                                 $('#' + key).attr('src', window.parent.$('#' + key).attr('src') + '&amp;' + new Date().getTime());
                                 $('#' + key + '_menu').hide();
                             } else {
+                                //予期しないエラー
                                 window.alert('予期しないエラーが発生しました。');
                             }
                         },
