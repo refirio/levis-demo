@@ -4,7 +4,7 @@ $(document).ready(function() {
      * アップロードファイルの処理
      */
     if ($('.upload').size() > 0) {
-        //アップロードファイルを削除
+        // アップロードファイルを削除
         var file_delete = function(key) {
             return function(e) {
                 if (window.confirm('本当に削除してもよろしいですか？')) {
@@ -16,11 +16,11 @@ $(document).ready(function() {
                         dataType: 'json',
                         success: function(response) {
                             if (response.status == 'OK') {
-                                //正常終了
+                                // 正常終了
                                 $('#' + key).attr('src', window.parent.$('#' + key).attr('src') + '&amp;' + new Date().getTime());
                                 $('#' + key + '_menu').hide();
                             } else {
-                                //予期しないエラー
+                                // 予期しないエラー
                                 window.alert('予期しないエラーが発生しました。');
                             }
                         },
@@ -36,7 +36,7 @@ $(document).ready(function() {
             };
         };
 
-        //初期化
+        // 初期化
         if ($('#image_01').size() > 0) {
             $('#image_01_menu').hide();
             $('#image_01_delete').click(file_delete('image_01'));

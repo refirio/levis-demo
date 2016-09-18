@@ -30,7 +30,7 @@ $GLOBALS['config']['pagers'] = array(
 /* オプション項目 */
 $GLOBALS['config']['options'] = array(
     'article' => array(
-        //公開
+        // 公開
         'publics' => array(
             0 => '非公開',
             1 => '公開',

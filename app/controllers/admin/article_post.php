@@ -1,21 +1,21 @@
 <?php
 
-//フォワードを確認
+// フォワードを確認
 if (forward() === null) {
     error('不正なアクセスです。');
 }
 
-//投稿データを確認
+// 投稿データを確認
 if (empty($_SESSION['post'])) {
-    //リダイレクト
+    // リダイレクト
     redirect('/admin/article_form');
 }
 
-//トランザクションを開始
+// トランザクションを開始
 db_transaction();
 
 if (empty($_SESSION['post']['article']['id'])) {
-    //記事を登録
+    // 記事を登録
     $resource = insert_articles(array(
         'values' => array(
             'datetime' => $_SESSION['post']['article']['datetime'],
@@ -33,7 +33,7 @@ if (empty($_SESSION['post']['article']['id'])) {
         error('データを登録できません。');
     }
 } else {
-    //記事を編集
+    // 記事を編集
     $resource = update_articles(array(
         'set'   => array(
             'datetime' => $_SESSION['post']['article']['datetime'],
@@ -59,12 +59,12 @@ if (empty($_SESSION['post']['article']['id'])) {
     }
 }
 
-//トランザクションを終了
+// トランザクションを終了
 db_commit();
 
-//投稿セッションを初期化
+// 投稿セッションを初期化
 unset($_SESSION['post']);
 unset($_SESSION['file']);
 
-//リダイレクト
+// リダイレクト
 redirect('/admin/article?ok=post');

@@ -1,6 +1,6 @@
 <?php
 
-//対象を検証
+// 対象を検証
 if (!preg_match('/^[\w\-]+$/', $_GET['target'])) {
     error('不正なアクセスです。');
 }
@@ -8,18 +8,18 @@ if (!preg_match('/^[\w\-]+$/', $_GET['key'])) {
     error('不正なアクセスです。');
 }
 
-//形式を検証
+// 形式を検証
 if (!preg_match('/^[\w\-]+$/', $_GET['format'])) {
     error('不正なアクセスです。');
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //ワンタイムトークン
+    // ワンタイムトークン
     if (!token('check')) {
         error('不正なアクセスです。');
     }
 
-    //入力データを検証＆登録
+    // 入力データを検証＆登録
     if (isset($_POST['type']) && $_POST['type'] === 'json') {
         if (count($_FILES['files']['tmp_name']) > 1) {
             error('アップロードできるファイルは1つです。');
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_FILES['files'])) {
                 ok();
             } else {
-                //リダイレクト
+                // リダイレクト
                 redirect('/admin/file_upload?ok=post&target=' . $_GET['target'] . '&key=' . $_GET['key'] . '&format=' . $_GET['format'] . (isset($_GET['id']) ? '&id=' . intval($_GET['id']): ''));
             }
         }
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-//初期データを取得
+// 初期データを取得
 if (empty($view['warnings'])) {
     if (isset($_SESSION['file'][$_GET['target']][$_GET['key']]['data'])) {
         $file = true;

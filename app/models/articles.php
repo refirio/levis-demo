@@ -7,24 +7,25 @@ import('libs/plugins/directory.php');
 /**
  * 記事の取得
  *
- * @param  array  $queries
- * @param  array  $options
+ * @param array $queries
+ * @param array $options
+ *
  * @return array
  */
 function select_articles($queries, $options = array())
 {
     $queries = db_placeholder($queries);
 
-    //記事を取得
+    // 記事を取得
     $queries['from'] = DATABASE_PREFIX . 'articles';
 
-    //削除済みデータは取得しない
+    // 削除済みデータは取得しない
     if (!isset($queries['where'])) {
         $queries['where'] = 'TRUE';
     }
     $queries['where'] = 'deleted IS NULL AND (' . $queries['where'] . ')';
 
-    //データを取得
+    // データを取得
     $results = db_select($queries);
 
     return $results;
@@ -33,8 +34,9 @@ function select_articles($queries, $options = array())
 /**
  * 記事の登録
  *
- * @param  array  $queries
- * @param  array  $options
+ * @param array $queries
+ * @param array $options
+ *
  * @return resource
  */
 function insert_articles($queries, $options = array())
@@ -44,7 +46,7 @@ function insert_articles($queries, $options = array())
         'files' => isset($options['files']) ? $options['files'] : array(),
     );
 
-    //初期値を取得
+    // 初期値を取得
     $defaults = default_articles();
 
     if (isset($queries['values']['created'])) {
@@ -62,7 +64,7 @@ function insert_articles($queries, $options = array())
         $queries['values']['modified'] = $defaults['modified'];
     }
 
-    //データを登録
+    // データを登録
     $queries['insert_into'] = DATABASE_PREFIX . 'articles';
 
     $resource = db_insert($queries);
@@ -70,14 +72,14 @@ function insert_articles($queries, $options = array())
         return $resource;
     }
 
-    //IDを取得
+    // IDを取得
     $id = db_last_insert_id();
 
     if (!empty($options['files'])) {
-        //関連するファイルを削除
+        // 関連するファイルを削除
         remove_articles($id, $options['files']);
 
-        //関連するファイルを保存
+        // 関連するファイルを保存
         save_articles($id, $options['files']);
     }
 
@@ -87,8 +89,9 @@ function insert_articles($queries, $options = array())
 /**
  * 記事の編集
  *
- * @param  array  $queries
- * @param  array  $options
+ * @param array $queries
+ * @param array $options
+ *
  * @return resource
  */
 function update_articles($queries, $options = array())
@@ -99,7 +102,7 @@ function update_articles($queries, $options = array())
         'files' => isset($options['files'])  ? $options['files']  : array(),
     );
 
-    //初期値を取得
+    // 初期値を取得
     $defaults = default_articles();
 
     if (isset($queries['set']['modified'])) {
@@ -110,7 +113,7 @@ function update_articles($queries, $options = array())
         $queries['set']['modified'] = $defaults['modified'];
     }
 
-    //データを編集
+    // データを編集
     $queries['update'] = DATABASE_PREFIX . 'articles';
 
     $resource = db_update($queries);
@@ -118,14 +121,14 @@ function update_articles($queries, $options = array())
         return $resource;
     }
 
-    //IDを取得
+    // IDを取得
     $id = $options['id'];
 
     if (!empty($options['files'])) {
-        //関連するファイルを削除
+        // 関連するファイルを削除
         remove_articles($id, $options['files']);
 
-        //関連するファイルを保存
+        // 関連するファイルを保存
         save_articles($id, $options['files']);
     }
 
@@ -135,8 +138,9 @@ function update_articles($queries, $options = array())
 /**
  * 記事の削除
  *
- * @param  array  $queries
- * @param  array  $options
+ * @param array $queries
+ * @param array $options
+ *
  * @return resource
  */
 function delete_articles($queries, $options = array())
@@ -147,7 +151,7 @@ function delete_articles($queries, $options = array())
         'file'       => isset($options['file'])       ? $options['file']       : false,
     );
 
-    //削除するデータのIDを取得
+    // 削除するデータのIDを取得
     $articles = db_select(array(
         'select' => 'id',
         'from'   => DATABASE_PREFIX . 'articles AS articles',
@@ -161,7 +165,7 @@ function delete_articles($queries, $options = array())
     }
 
     if ($options['softdelete'] === true) {
-        //データを編集
+        // データを編集
         $resource = db_update(array(
             'update' => DATABASE_PREFIX . 'articles AS articles',
             'set'    => array(
@@ -174,7 +178,7 @@ function delete_articles($queries, $options = array())
             return $resource;
         }
     } else {
-        //データを削除
+        // データを削除
         $resource = db_delete(array(
             'delete_from' => DATABASE_PREFIX . 'articles AS articles',
             'where'       => isset($queries['where']) ? $queries['where'] : '',
@@ -186,7 +190,7 @@ function delete_articles($queries, $options = array())
     }
 
     if ($options['file'] === true) {
-        //関連するファイルを削除
+        // 関連するファイルを削除
         foreach ($deletes as $delete) {
             directory_rmdir($GLOBALS['config']['file_targets']['article'] . $delete . '/');
         }
@@ -198,13 +202,14 @@ function delete_articles($queries, $options = array())
 /**
  * 記事の正規化
  *
- * @param  array  $queries
- * @param  array  $options
+ * @param array $queries
+ * @param array $options
+ *
  * @return array
  */
 function normalize_articles($queries, $options = array())
 {
-    //日時
+    // 日時
     if (isset($queries['datetime'])) {
         if (is_array($queries['datetime'])) {
             $queries['datetime'] = $queries['datetime']['year']
@@ -226,15 +231,16 @@ function normalize_articles($queries, $options = array())
 /**
  * 記事の検証
  *
- * @param  array  $queries
- * @param  array  $options
+ * @param array $queries
+ * @param array $options
+ *
  * @return array
  */
 function validate_articles($queries, $options = array())
 {
     $messages = array();
 
-    //日時
+    // 日時
     if (isset($queries['datetime'])) {
         if (!validator_required($queries['datetime'])) {
         } elseif (!validator_datetime($queries['datetime'])) {
@@ -242,7 +248,7 @@ function validate_articles($queries, $options = array())
         }
     }
 
-    //タイトル
+    // タイトル
     if (isset($queries['title'])) {
         if (!validator_required($queries['title'])) {
             $messages['title'] = 'タイトルが入力されていません。';
@@ -251,7 +257,7 @@ function validate_articles($queries, $options = array())
         }
     }
 
-    //本文
+    // 本文
     if (isset($queries['body'])) {
         if (!validator_required($queries['body'])) {
         } elseif (!validator_max_length($queries['body'], 1000)) {
@@ -259,7 +265,7 @@ function validate_articles($queries, $options = array())
         }
     }
 
-    //公開
+    // 公開
     if (isset($queries['public'])) {
         if (!validator_boolean($queries['public'])) {
             $messages['public'] = '公開の書式が不正です。';
@@ -272,8 +278,9 @@ function validate_articles($queries, $options = array())
 /**
  * ファイルの保存
  *
- * @param  string  $id
- * @param  array  $files
+ * @param string $id
+ * @param array  $files
+ *
  * @return void
  */
 function save_articles($id, $files)
@@ -317,8 +324,9 @@ function save_articles($id, $files)
 /**
  * ファイルの削除
  *
- * @param  string  $id
- * @param  array  $files
+ * @param string $id
+ * @param array  $files
+ *
  * @return void
  */
 function remove_articles($id, $files)
@@ -370,12 +378,13 @@ function remove_articles($id, $files)
 /**
  * 記事の表示用データ作成
  *
- * @param  array  $data
+ * @param array $data
+ *
  * @return array
  */
 function view_articles($data)
 {
-    //日時
+    // 日時
     if (isset($data['datetime'])) {
         if (preg_match('/^(\d\d\d\d\-\d\d\-\d\d \d\d:\d\d):\d\d$/', $data['datetime'], $matches)) {
             $data['datetime'] = $matches[1] . ':00';

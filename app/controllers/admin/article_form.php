@@ -4,12 +4,12 @@ import('libs/plugins/file.php');
 import('libs/plugins/ui.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //ワンタイムトークン
+    // ワンタイムトークン
     if (!token('check')) {
         error('不正なアクセスです。');
     }
 
-    //入力データを整理
+    // 入力データを整理
     $post = array(
         'article' => normalize_articles(array(
             'id'       => isset($_POST['id'])       ? $_POST['id']       : '',
@@ -21,15 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     );
 
     if (isset($_POST['view']) && $_POST['view'] === 'preview') {
-        //プレビュー
+        // プレビュー
         $view['article'] = $post['article'];
     } else {
-        //入力データを検証＆登録
+        // 入力データを検証＆登録
         $warnings = validate_articles($post['article']);
         if (empty($warnings)) {
             $_SESSION['post']['article'] = $post['article'];
 
-            //フォワード
+            // フォワード
             forward('/admin/article_post');
         } else {
             $view['article'] = $post['article'];
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 } else {
-    //初期データを取得
+    // 初期データを取得
     if (empty($_GET['id'])) {
         $view['article'] = default_articles();
     } else {
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (isset($_GET['type']) && $_GET['type'] === 'json') {
-        //記事情報を取得
+        // 記事情報を取得
         header('Content-Type: application/json; charset=' . MAIN_CHARSET);
 
         echo json_encode(array(
@@ -72,18 +72,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         exit;
     } else {
-        //投稿セッションを初期化
+        // 投稿セッションを初期化
         unset($_SESSION['post']);
         unset($_SESSION['file']);
     }
 }
 
 if ((empty($_POST['view']) || $_POST['view'] !== 'preview')) {
-    //記事の表示用データ作成
+    // 記事の表示用データ作成
     $view['article'] = view_articles($view['article']);
 }
 
-//タイトル
+// タイトル
 if (empty($_GET['id'])) {
     $view['title'] = '記事登録';
 } else {

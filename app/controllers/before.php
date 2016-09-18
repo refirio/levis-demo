@@ -1,4 +1,4 @@
 <?php
 
-//設定ファイル
+// 設定ファイル
 import('app/config.php');
