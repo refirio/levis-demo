@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // 入力データを検証＆登録
-    if (isset($_POST['type']) && $_POST['type'] === 'json') {
+    if (isset($_POST['_type']) && $_POST['_type'] === 'json') {
         if (count($_FILES['files']['tmp_name']) > 1) {
             error('アップロードできるファイルは1つです。');
         } else {
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($ext === null) {
-            $view['warnings'] = array('アップロードできるファイル形式は' . implode('、', $names) . 'のみです。');
+            $_view['warnings'] = array('アップロードできるファイル形式は' . implode('、', $names) . 'のみです。');
         } else {
             $_SESSION['file'][$_GET['target']][$_GET['key']] = array(
                 'name' => $_FILES['file']['name'],
@@ -62,12 +62,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     } else {
-        $view['warnings'] = array('ファイルを選択してください。');
+        $_view['warnings'] = array('ファイルを選択してください。');
     }
 }
 
 // 初期データを取得
-if (empty($view['warnings'])) {
+if (empty($_view['warnings'])) {
     if (isset($_SESSION['file'][$_GET['target']][$_GET['key']]['data'])) {
         $file = true;
     } elseif (isset($_GET['id'])) {
@@ -93,16 +93,16 @@ if (empty($view['warnings'])) {
         $file = false;
     }
 
-    if (isset($_POST['type']) && $_POST['type'] === 'json') {
+    if (isset($_POST['_type']) && $_POST['_type'] === 'json') {
         ok();
     }
 } else{
-    if (isset($_POST['type']) && $_POST['type'] === 'json') {
-        error($view['warnings'][0]);
+    if (isset($_POST['_type']) && $_POST['_type'] === 'json') {
+        error($_view['warnings'][0]);
     }
 }
 
-$view['target'] = $_GET['target'];
-$view['key']    = $_GET['key'];
-$view['format'] = $_GET['format'];
-$view['file']   = $file;
+$_view['target'] = $_GET['target'];
+$_view['key']    = $_GET['key'];
+$_view['format'] = $_GET['format'];
+$_view['file']   = $file;

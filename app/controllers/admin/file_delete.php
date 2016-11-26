@@ -21,7 +21,7 @@ if (!token('check')) {
 // 画像を削除
 $_SESSION['file'][$_GET['target']][$_GET['key']]['delete'] = true;
 
-if (isset($_POST['type']) && $_POST['type'] === 'json') {
+if (isset($_POST['_type']) && $_POST['_type'] === 'json') {
     ok();
 } else {
     // リダイレクト

@@ -1,6 +1,6 @@
 <?php import('app/views/admin/header.php') ?>
 
-        <h3><?php h($view['title']) ?></h3>
+        <h3><?php h($_view['title']) ?></h3>
 
         <ul>
             <li><a href="<?php t(MAIN_FILE) ?>/admin/article_form">記事登録</a></li>
@@ -33,7 +33,7 @@
                 </tr>
             </tfoot>
             <tbody>
-                <?php foreach ($view['articles'] as $article) : ?>
+                <?php foreach ($_view['articles'] as $article) : ?>
                 <tr>
                     <td><?php h(localdate('Y/m/d H:i', $article['datetime'])) ?></td>
                     <td><?php h($article['title']) ?></td>
@@ -44,9 +44,9 @@
             </tbody>
         </table>
 
-        <?php if ($view['article_page'] > 1) : ?>
+        <?php if ($_view['article_page'] > 1) : ?>
             <h3>ページ移動</h3>
-            <p><?php e($view['article_pager']) ?></p>
+            <p><?php e($_view['article_pager']) ?></p>
         <?php endif ?>
 
 <?php import('app/views/admin/footer.php') ?>

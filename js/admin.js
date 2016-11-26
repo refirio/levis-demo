@@ -12,7 +12,7 @@ $(document).ready(function() {
                         type: 'post',
                         url: $(this).attr('href'),
                         cache: false,
-                        data: 'type=json&token=' + $(this).attr('data-token'),
+                        data: '_type=json&_token=' + $(this).attr('data-token'),
                         dataType: 'json',
                         success: function(response) {
                             if (response.status == 'OK') {
@@ -50,7 +50,7 @@ $(document).ready(function() {
             type: 'get',
             url: $('form.validate').attr('action'),
             cache: false,
-            data: 'type=json',
+            data: '_type=json',
             dataType: 'json',
             success: function(response) {
                 if (response.status == 'OK') {

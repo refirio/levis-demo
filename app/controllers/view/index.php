@@ -3,8 +3,8 @@
 import('libs/plugins/file.php');
 
 // IDを取得
-if (isset($params[1])) {
-    $_GET['id'] = $params[1];
+if (isset($_params[1])) {
+    $_GET['id'] = $_params[1];
 }
 if (!isset($_GET['id']) || !preg_match('/^\d+$/', $_GET['id'])) {
     error('不正なアクセスです。');
@@ -22,5 +22,5 @@ $articles = select_articles(array(
 if (empty($articles)) {
     warning('記事が見つかりません。');
 } else {
-    $view['article'] = $articles[0];
+    $_view['article'] = $articles[0];
 }

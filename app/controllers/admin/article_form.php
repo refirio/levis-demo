@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['view']) && $_POST['view'] === 'preview') {
         // プレビュー
-        $view['article'] = $post['article'];
+        $_view['article'] = $post['article'];
     } else {
         // 入力データを検証＆登録
         $warnings = validate_articles($post['article']);
@@ -32,15 +32,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // フォワード
             forward('/admin/article_post');
         } else {
-            $view['article'] = $post['article'];
+            $_view['article'] = $post['article'];
 
-            $view['warnings'] = $warnings;
+            $_view['warnings'] = $warnings;
         }
     }
 } else {
     // 初期データを取得
     if (empty($_GET['id'])) {
-        $view['article'] = default_articles();
+        $_view['article'] = default_articles();
     } else {
         $articles = select_articles(array(
             'where' => array(
@@ -53,20 +53,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($articles)) {
             warning('編集データが見つかりません。');
         } else {
-            $view['article'] = $articles[0];
+            $_view['article'] = $articles[0];
         }
     }
 
-    if (isset($_GET['type']) && $_GET['type'] === 'json') {
+    if (isset($_GET['_type']) && $_GET['_type'] === 'json') {
         // 記事情報を取得
         header('Content-Type: application/json; charset=' . MAIN_CHARSET);
 
         echo json_encode(array(
             'status' => 'OK',
-            'data'   => $view,
+            'data'   => $_view,
             'files'  => array(
-                'image_01' => $view['article']['image_01'] ? file_mimetype($view['article']['image_01']) : null,
-                'image_02' => $view['article']['image_02'] ? file_mimetype($view['article']['image_02']) : null,
+                'image_01' => $_view['article']['image_01'] ? file_mimetype($_view['article']['image_01']) : null,
+                'image_02' => $_view['article']['image_02'] ? file_mimetype($_view['article']['image_02']) : null,
             ),
         ));
 
@@ -80,12 +80,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if ((empty($_POST['view']) || $_POST['view'] !== 'preview')) {
     // 記事の表示用データ作成
-    $view['article'] = view_articles($view['article']);
+    $_view['article'] = view_articles($_view['article']);
 }
 
 // タイトル
 if (empty($_GET['id'])) {
-    $view['title'] = '記事登録';
+    $_view['title'] = '記事登録';
 } else {
-    $view['title'] = '記事編集';
+    $_view['title'] = '記事編集';
 }

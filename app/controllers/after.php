@@ -1,4 +1,4 @@
 <?php
 
 // ワンタイムトークン
-$view['token'] = token('create');
+$_view['token'] = token('create');

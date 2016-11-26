@@ -10,7 +10,7 @@ if (isset($_GET['page'])) {
 }
 
 // 記事を取得
-$view['articles'] = select_articles(array(
+$_view['articles'] = select_articles(array(
     'where'    => 'public = 1',
     'order_by' => 'datetime DESC',
     'limit'    => array(
@@ -22,19 +22,19 @@ $view['articles'] = select_articles(array(
     ),
 ));
 
-$view['article_count'] = select_articles(array(
+$_view['article_count'] = select_articles(array(
     'select' => 'COUNT(*) AS count',
     'where'  => 'public = 1',
 ));
-$view['article_count'] = $view['article_count'][0]['count'];
-$view['article_page']  = ceil($view['article_count'] / $GLOBALS['config']['limits']['article']);
+$_view['article_count'] = $_view['article_count'][0]['count'];
+$_view['article_page']  = ceil($_view['article_count'] / $GLOBALS['config']['limits']['article']);
 
 // ページャー
 $pager = ui_pager(array(
     'key'   => 'page',
-    'count' => $view['article_count'],
+    'count' => $_view['article_count'],
     'size'  => $GLOBALS['config']['limits']['article'],
     'width' => $GLOBALS['config']['pagers']['article'],
     'query' => '?',
 ));
-$view['article_pager'] = $pager['first'] . ' ' . $pager['back'] . ' ' . implode(' | ', $pager['pages']) . ' ' . $pager['next'] . ' ' . $pager['last'];
+$_view['article_pager'] = $pager['first'] . ' ' . $pager['back'] . ' ' . implode(' | ', $pager['pages']) . ' ' . $pager['next'] . ' ' . $pager['last'];
