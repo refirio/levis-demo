@@ -73,14 +73,14 @@ function insert_articles($queries, $options = array())
     }
 
     // IDを取得
-    $id = db_last_insert_id();
+    $article_id = db_last_insert_id();
 
     if (!empty($options['files'])) {
         // 関連するファイルを削除
-        remove_articles($id, $options['files']);
+        remove_articles($article_id, $options['files']);
 
         // 関連するファイルを保存
-        save_articles($id, $options['files']);
+        save_articles($article_id, $options['files']);
     }
 
     return $resource;
