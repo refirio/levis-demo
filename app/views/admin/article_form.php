@@ -10,9 +10,9 @@
             <dt>本文</dt>
                 <dd><?php h($_view['article']['body']) ?></dd>
             <dt>画像1</dt>
-                <dd><img src="<?php t(MAIN_FILE) ?>/admin/file?target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" /></dd>
+                <dd><img src="<?php t(MAIN_FILE) ?>/admin/file?_type=image&amp;target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" /></dd>
             <dt>画像2</dt>
-                <dd><img src="<?php t(MAIN_FILE) ?>/admin/file?target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" /></dd>
+                <dd><img src="<?php t(MAIN_FILE) ?>/admin/file?_type=image&amp;target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" /></dd>
             <dt>公開</dt>
                 <dd><?php h($GLOBALS['config']['options']['article']['publics'][$_view['article']['public']]) ?></dd>
         </dl>
@@ -59,7 +59,7 @@
                         <dd><textarea name="body" rows="10" cols="50"><?php t($_view['article']['body']) ?></textarea></dd>
                     <dt>画像1</dt>
                         <dd class="upload">
-                            <a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" title="アップロード" class="file_upload"><img src="<?php t(MAIN_FILE) ?>/admin/file?target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" id="image_01" /></a>
+                            <a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" title="アップロード" class="file_upload"><img src="<?php t(MAIN_FILE) ?>/admin/file?_type=image&amp;target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" id="image_01" /></a>
                             <div class="file_menu" id="image_01_menu">
                                 <ul>
                                     <li><a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" title="アップロード" class="file_upload">差替</a></li>
@@ -69,7 +69,7 @@
                         </dd>
                     <dt>画像2</dt>
                         <dd class="upload">
-                            <a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" title="アップロード" class="file_upload"><img src="<?php t(MAIN_FILE) ?>/admin/file?target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" id="image_02" /></a>
+                            <a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" title="アップロード" class="file_upload"><img src="<?php t(MAIN_FILE) ?>/admin/file?_type=image&amp;target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" id="image_02" /></a>
                             <div class="file_menu" id="image_02_menu">
                                 <ul>
                                     <li><a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" title="アップロード" class="file_upload">差替</a></li>
