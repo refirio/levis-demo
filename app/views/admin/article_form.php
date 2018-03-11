@@ -10,9 +10,9 @@
             <dt>本文</dt>
                 <dd><?php h($_view['article']['body']) ?></dd>
             <dt>画像1</dt>
-                <dd><img src="<?php t(MAIN_FILE) ?>/admin/file?_type=image&amp;target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" /></dd>
+                <dd><img src="<?php t(MAIN_FILE) ?>/admin/file?_type=image&amp;target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>"></dd>
             <dt>画像2</dt>
-                <dd><img src="<?php t(MAIN_FILE) ?>/admin/file?_type=image&amp;target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" /></dd>
+                <dd><img src="<?php t(MAIN_FILE) ?>/admin/file?_type=image&amp;target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>"></dd>
             <dt>公開</dt>
                 <dd><?php h($GLOBALS['config']['options']['article']['publics'][$_view['article']['public']]) ?></dd>
         </dl>
@@ -31,9 +31,9 @@
         <form action="<?php t(MAIN_FILE) ?>/admin/article_form<?php $_view['article']['id'] ? t('?id=' . $_view['article']['id']) : '' ?>" method="post" class="register">
             <fieldset>
                 <legend>登録フォーム</legend>
-                <input type="hidden" name="_token" value="<?php t($_view['token']) ?>" />
-                <input type="hidden" name="id" value="<?php t($_view['article']['id']) ?>" />
-                <input type="hidden" name="view" value="" />
+                <input type="hidden" name="_token" value="<?php t($_view['token']) ?>">
+                <input type="hidden" name="id" value="<?php t($_view['article']['id']) ?>">
+                <input type="hidden" name="view" value="">
                 <dl>
                     <dt>日時</dt>
                         <dd>
@@ -54,12 +54,12 @@
                             </select>
                         </dd>
                     <dt>タイトル</dt>
-                        <dd><input type="text" name="title" size="30" value="<?php t($_view['article']['title']) ?>" /></dd>
+                        <dd><input type="text" name="title" size="30" value="<?php t($_view['article']['title']) ?>"></dd>
                     <dt>本文</dt>
                         <dd><textarea name="body" rows="10" cols="50"><?php t($_view['article']['body']) ?></textarea></dd>
                     <dt>画像1</dt>
                         <dd class="upload">
-                            <a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" title="アップロード" class="file_upload"><img src="<?php t(MAIN_FILE) ?>/admin/file?_type=image&amp;target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" id="image_01" /></a>
+                            <a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" title="アップロード" class="file_upload"><img src="<?php t(MAIN_FILE) ?>/admin/file?_type=image&amp;target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" id="image_01"></a>
                             <div class="file_menu" id="image_01_menu">
                                 <ul>
                                     <li><a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_01&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" title="アップロード" class="file_upload">差替</a></li>
@@ -69,7 +69,7 @@
                         </dd>
                     <dt>画像2</dt>
                         <dd class="upload">
-                            <a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" title="アップロード" class="file_upload"><img src="<?php t(MAIN_FILE) ?>/admin/file?_type=image&amp;target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" id="image_02" /></a>
+                            <a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" title="アップロード" class="file_upload"><img src="<?php t(MAIN_FILE) ?>/admin/file?_type=image&amp;target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" id="image_02"></a>
                             <div class="file_menu" id="image_02_menu">
                                 <ul>
                                     <li><a href="<?php t(MAIN_FILE) ?>/admin/file_upload?target=article&amp;key=image_02&amp;format=image<?php $_view['article']['id'] ? t('&id=' . $_view['article']['id']) : '' ?>" title="アップロード" class="file_upload">差替</a></li>
@@ -87,8 +87,8 @@
                         </dd>
                 </dl>
                 <p>
-                    <input type="button" value="確認する" class="preview" />
-                    <input type="submit" value="登録する" />
+                    <input type="button" value="確認する" class="preview">
+                    <input type="submit" value="登録する">
                 </p>
             </fieldset>
         </form>
@@ -98,9 +98,9 @@
         <form action="<?php t(MAIN_FILE) ?>/admin/article_delete" method="post" class="delete">
             <fieldset>
                 <legend>削除フォーム</legend>
-                <input type="hidden" name="_token" value="<?php t($_view['token']) ?>" />
-                <input type="hidden" name="id" value="<?php t($_view['article']['id']) ?>" />
-                <p><input type="submit" value="削除する" /></p>
+                <input type="hidden" name="_token" value="<?php t($_view['token']) ?>">
+                <input type="hidden" name="id" value="<?php t($_view['article']['id']) ?>">
+                <p><input type="submit" value="削除する"></p>
             </fieldset>
         </form>
         <?php endif ?>
