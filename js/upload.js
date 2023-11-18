@@ -3,7 +3,7 @@ $(document).ready(function() {
     /*
      * ファイルアップロード
      */
-    if ($('#upload').size() > 0) {
+    if ($('#upload').length > 0) {
         $(document).on('drop', function(e) {
             return false;
         }).on('dragover', function(e) {

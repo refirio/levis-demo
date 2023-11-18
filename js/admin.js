@@ -3,7 +3,7 @@ $(document).ready(function() {
     /*
      * アップロードファイルの処理
      */
-    if ($('.upload').size() > 0) {
+    if ($('.upload').length > 0) {
         // アップロードファイルを削除
         var file_delete = function(key) {
             return function(e) {
@@ -37,11 +37,11 @@ $(document).ready(function() {
         };
 
         // 初期化
-        if ($('#image_01').size() > 0) {
+        if ($('#image_01').length > 0) {
             $('#image_01_menu').hide();
             $('#image_01_delete').click(file_delete('image_01'));
         }
-        if ($('#image_02').size() > 0) {
+        if ($('#image_02').length > 0) {
             $('#image_02_menu').hide();
             $('#image_02_delete').click(file_delete('image_02'));
         }
